@@ -25,6 +25,16 @@ namespace SchoolAppASPv2.Identity.Controllers
         private readonly IConfiguration _configuration;
 
 
+        public AccountController(ILoginService<ApplicationUser> loginService, IConfiguration configuration,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _loginService = loginService;
+            _configuration = configuration;
+        }
+
         [HttpPost]
         [Route("try")]
         public IActionResult Try()
@@ -73,6 +83,44 @@ namespace SchoolAppASPv2.Identity.Controllers
                 }
             }
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("Register")]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(UserRegisterModel userRegisterModel, string returnUrl = null)
+        {
+            //ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = userRegisterModel.Email,
+                    Email = userRegisterModel.Email,
+                    LastName = userRegisterModel.User.LastName,
+                    Name = userRegisterModel.User.Name,
+                    PhoneNumber = userRegisterModel.User.PhoneNumber,
+                };
+                var result = await _userManager.CreateAsync(user, userRegisterModel.Password);
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToLocal(returnUrl);
+                }
+                AddErrors(result);
+            }
+
+            return Ok(userRegisterModel);
+
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
         }
 
         private IActionResult RedirectToLocal(string returnUrl)

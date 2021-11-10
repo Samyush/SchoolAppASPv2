@@ -1,13 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SchoolAppASPv2.Identity.Data;
+//using 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace SchoolAppASPv2.Identity
@@ -24,6 +28,18 @@ namespace SchoolAppASPv2.Identity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.Configure<AuthSettingModel>(Configuration.GetSection("IdentityOptions"));
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration["ConnectionString"], sqlServerOptionsAction: sqlOptions =>
+                {
+                    sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
+                });
+                options.UseOpenIddict();
+
+            });
+
             services.AddRazorPages();
 
             services.AddControllers();
@@ -31,9 +47,7 @@ namespace SchoolAppASPv2.Identity
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SchoolAppsV2", Version = "v1" });
-            }
-                
-                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

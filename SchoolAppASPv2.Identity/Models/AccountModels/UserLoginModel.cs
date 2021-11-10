@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolAppASPv2.Identity.Models.AccountModels
 {
-    public class UserLoginModel
+    public record UserLoginModel
     {
         [Required]
         [EmailAddress]
