@@ -35,7 +35,7 @@ namespace SchoolAppASPv2.Identity.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("try")]
         public IActionResult Try()
         {

@@ -12,8 +12,8 @@ using SchoolAppASPv2.Identity.Data;
 namespace SchoolAppASPv2.Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211112040332_IdentityDBUser")]
-    partial class IdentityDBUser
+    [Migration("20211114033822_IdntityDBUser")]
+    partial class IdntityDBUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

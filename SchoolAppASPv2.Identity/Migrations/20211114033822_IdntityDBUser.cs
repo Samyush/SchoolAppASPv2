@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SchoolAppASPv2.Identity.Migrations
 {
-    public partial class IdentityDBUser : Migration
+    public partial class IdntityDBUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

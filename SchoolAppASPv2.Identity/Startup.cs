@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SchoolAppASPv2.Identity.Data;
 using SchoolAppASPv2.Identity.Models;
+using SchoolAppASPv2.Identity.Services;
 //using 
 using System;
 using System.Collections.Generic;
@@ -77,32 +78,35 @@ namespace SchoolAppASPv2.Identity
                                               .AllowClientCredentialsFlow();
 
                     // Register the signing and encryption credentials.
-                    //options.AddDevelopmentEncryptionCertificate()
-                    //       .AddDevelopmentSigningCertificate();
+                    options.AddDevelopmentEncryptionCertificate()
+                           .AddDevelopmentSigningCertificate();
 
                     options.AddEphemeralSigningKey()
                          .AddEphemeralEncryptionKey();
 
 
                     // Register the ASP.NET Core host and configure the ASP.NET Core-specific options.
-                //    options.UseAspNetCore()
-                //    .DisableTransportSecurityRequirement()
-                //            .EnableTokenEndpointPassthrough()
-                //            .EnableAuthorizationEndpointPassthrough()
-                //           .EnableLogoutEndpointPassthrough()
-                //           .EnableUserinfoEndpointPassthrough()
-                //           .EnableStatusCodePagesIntegration();
-                //}).AddValidation(options =>
-                //{
-                //    // Import the configuration from the local OpenIddict server instance.
-                //    options.UseLocalServer();
+                    options.UseAspNetCore()
+                    .DisableTransportSecurityRequirement()
+                            .EnableTokenEndpointPassthrough()
+                            .EnableAuthorizationEndpointPassthrough()
+                           .EnableLogoutEndpointPassthrough()
+                           .EnableUserinfoEndpointPassthrough()
+                           .EnableStatusCodePagesIntegration();
+                }).AddValidation(options =>
+                {
+                    // Import the configuration from the local OpenIddict server instance.
+                    options.UseLocalServer();
 
-                //    // Register the ASP.NET Core host.
-                //    options.UseAspNetCore();
+                    // Register the ASP.NET Core host.
+                    options.UseAspNetCore();
 
 
-                }
-                );
+                });
+
+            services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
+
+            services.AddControllersWithViews();
 
             services.AddRazorPages();
 
