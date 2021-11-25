@@ -1,16 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using SchoolAppASPv2.Identity.Models;
-using SchoolAppASPv2.Identity.Models.AccountModels;
-using SchoolAppASPv2.Identity.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SchoolAppASPv2.Identity.Controllers
 {
@@ -18,122 +8,36 @@ namespace SchoolAppASPv2.Identity.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILoginService<ApplicationUser> _loginService;
-        private readonly IConfiguration _configuration;
-
-
-        public AccountController(ILoginService<ApplicationUser> loginService, IConfiguration configuration,
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _loginService = loginService;
-            _configuration = configuration;
-        }
-
+        // GET: api/<AccountController>
         [HttpGet]
-        [Route("try")]
-        public IActionResult Try()
+        public IEnumerable<string> Get()
         {
-            return Ok("Success");
+            return new string[] { "value1", "value2" };
         }
 
+        // GET api/<AccountController>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return "value";
+        }
+
+        // POST api/<AccountController>
         [HttpPost]
-        [Route("Login")]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(UserLoginModel userLoginModel, string returnUrl = null)
+        public void Post([FromBody] string value)
         {
-            if (ModelState.IsValid)
-            {
-                var user = await _loginService.FindByUserName(userLoginModel.Email);
-
-                if(await _loginService.ValidateCredentials(user , userLoginModel.Password))
-                {
-                    //var isInRole = await _userManager.IsInRoleAsync(user, "ADMIN");
-
-                    //if (!isInRole)
-
-                   var tokenLifetime = _configuration.GetValue("TokenLifetimeMinutes", 120);
-
-                    var props = new AuthenticationProperties
-                    {
-                        ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(tokenLifetime),
-                        AllowRefresh = true,
-                        RedirectUri = userLoginModel.ReturnUrl
-                    };
-
-                    if (userLoginModel.RememberMe)
-                    {
-                        var permanentTokenLifetime = _configuration.GetValue("PermanentTokenLifetimeDays", 365);
-
-                        props.ExpiresUtc = DateTimeOffset.UtcNow.AddDays(permanentTokenLifetime);
-                        props.IsPersistent = true;
-                    }
-
-                    await _loginService.SignInAsync(user, props);
-
-                    //Todo:: method below to be added
-                    return RedirectToLocal(returnUrl);
-
-                }
-            }
-            return Ok();
         }
 
-        [HttpPost]
-        [Route("Register")]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(UserRegisterModel userRegisterModel, string returnUrl = null)
+        // PUT api/<AccountController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
         {
-            //ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser
-                {
-                    UserName = userRegisterModel.Email,
-                    Email = userRegisterModel.Email,
-                    LastName = userRegisterModel.User.LastName,
-                    Name = userRegisterModel.User.Name,
-                    PhoneNumber = userRegisterModel.User.PhoneNumber,
-                };
-                var result = await _userManager.CreateAsync(user, userRegisterModel.Password);
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToLocal(returnUrl);
-                }
-                AddErrors(result);
-            }
-
-            return Ok(userRegisterModel);
-
         }
 
-        private void AddErrors(IdentityResult result)
+        // DELETE api/<AccountController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
         {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
-        }
-
-        private IActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return null;
-                //return RedirectToAction(nameof(HomeController.Index), "Home");
-            }
         }
     }
 }
