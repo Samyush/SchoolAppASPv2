@@ -32,7 +32,9 @@ namespace SchoolAppASPv2.Identity.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //the addition and removal of [ValidateAntiForgeryToken] gives
+        //400 and
+        //415 error code
         [Route("login")]
         public async Task<IActionResult> Login(LoginModel model, string? returnUrl = null)
         {
@@ -42,20 +44,27 @@ namespace SchoolAppASPv2.Identity.Controllers
 
                 if (await _loginService.ValidateCredentials(user, model.Password!))
                 {
-                    var isInRole = await _userManager.IsInRoleAsync(user, "ADMIN");
 
-                    if (!isInRole)
+                    var result = await _loginService.ValidateCredentials(user, model.Password!);
+
+                    if(result == false)
                     {
-                        IdentityResult result = new();
-                        result.Errors.Select(error => new IdentityError
-                        {
-                            Code = "405",
-                            Description = "User not allowed to Login",
-                        });
-
-                        AddErrors(result);
                         return Ok(result);
                     }
+                    //var isInRole = await _userManager.IsInRoleAsync(user, "ADMIN");
+
+                    //if (!isInRole)
+                    //{
+                    //    IdentityResult result = new();
+                    //    result.Errors.Select(error => new IdentityError
+                    //    {
+                    //        Code = "405",
+                    //        Description = "User not allowed to Login",
+                    //    });
+
+                    //    AddErrors(result);
+                    //    return Ok(result);
+                    //}
 
                     var tokenLifetime = _configuration.GetValue("TokenLifetimeMinutes", 120);
 
@@ -76,11 +85,13 @@ namespace SchoolAppASPv2.Identity.Controllers
 
                     await _loginService.SignInAsync(user, props);
 
-                    return RedirectToLocal(returnUrl!);
+                    return Ok(result);
+
+                    //return RedirectToLocal(returnUrl!);
 
                 }
             }
-            return Ok();
+            return Ok(false);
         }
 
         [HttpPost]
@@ -104,7 +115,8 @@ namespace SchoolAppASPv2.Identity.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToLocal(returnUrl!);
+                    return Ok(result);
+                    //return RedirectToLocal(returnUrl!);
                 }
                 AddErrors(result);
                 return Ok(result);

@@ -15,7 +15,7 @@ namespace SchoolAppASPv2.Identity.Services
             _signInManager = signInManager;
         }
 
-        public async Task<ApplicationUser> FindByUsername(string user)
+        public async Task<ApplicationUser> FindByUserName(string user)
         {
             return await _userManager.FindByEmailAsync(user);
         }
@@ -35,9 +35,5 @@ namespace SchoolAppASPv2.Identity.Services
             return _signInManager.SignInAsync(user, properties, authenticationMethod);
         }
 
-        public Task<ApplicationUser> FindByUserName(string user)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

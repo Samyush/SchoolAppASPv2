@@ -4,6 +4,7 @@ using SchoolAppASPv2.Identity;
 using SchoolAppASPv2.Identity.Data;
 using SchoolAppASPv2.Identity.Models;
 using SchoolAppASPv2.Identity.Services;
+using System.Reflection;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<AuthSettingModel>(builder.Configuration.GetSection("IdentityOptions"));
+builder.Services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -23,7 +26,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     // Configure the context to use Microsoft SQL Server.
     options.UseSqlServer(builder.Configuration["ConnectionString"], sqlServerOptionsAction: sqlOptions =>
     {
-        //sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
+        sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().Assembly.GetName().Name);
     });
 
     // Register the entity sets needed by OpenIddict.
@@ -91,7 +94,6 @@ builder.Services.AddOpenIddict()
 
                 });
 
-builder.Services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
 
 
 var app = builder.Build();
@@ -104,6 +106,7 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "SchoolAppASPv2.Identity v1");
         c.RoutePrefix = String.Empty;
     });
+    app.UseDeveloperExceptionPage();
 }
 
 // Configure the HTTP request pipeline.
@@ -112,9 +115,6 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-
-    app.UseDeveloperExceptionPage();
-
 }
 
 app.UseHttpsRedirection();
@@ -123,6 +123,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",

@@ -41,7 +41,7 @@ namespace SchoolAppASPv2.Identity.Data
                             ClientSecret = "postman-secret", // Guid.NewGuid().ToString(),
                             ConsentType = ConsentTypes.Explicit,
                             DisplayName = "Postman Client Application",
-                            RedirectUris = { new Uri(authSetting.Value.PostManUrl) },
+                            RedirectUris = { new Uri(authSetting.Value.PostManUrl!) },
                             Permissions =
                             {
                                 Permissions.Endpoints.Authorization,
