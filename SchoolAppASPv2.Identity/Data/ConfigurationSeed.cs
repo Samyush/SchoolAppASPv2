@@ -167,8 +167,6 @@ namespace SchoolAppASPv2.Identity.Data
 
                 }
 
-
-
             }
             catch (Exception ex)
             {
