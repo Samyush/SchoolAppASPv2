@@ -98,16 +98,23 @@ builder.Services.AddOpenIddict()
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI(c =>
+//    {
+//        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SchoolAppASPv2.Identity v1");
+//        c.RoutePrefix = String.Empty;
+//    });
+//    app.UseDeveloperExceptionPage();
+//}
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SchoolAppASPv2.Identity v1");
-        c.RoutePrefix = String.Empty;
-    });
-    app.UseDeveloperExceptionPage();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SchoolAppASPv2.Identity v1");
+    c.RoutePrefix = String.Empty;
+});
+app.UseDeveloperExceptionPage();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
