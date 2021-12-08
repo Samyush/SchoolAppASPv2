@@ -1,15 +1,15 @@
-name: Build and deploy .NET Core app to Windows WebApp SchoolAppV2
+name: Build and deploy .NET Core app to Windows WebApp schoolAppV2
 on:
   push:
     branches:
     - master
 env:
-  AZURE_WEBAPP_NAME: SchoolAppV2
-  AZURE_WEBAPP_PACKAGE_PATH: SchoolAppASPv2.Identity/publish
-  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.SchoolAppV2_0c97 }}
+  AZURE_WEBAPP_NAME: schoolAppV2
+  AZURE_WEBAPP_PACKAGE_PATH: SchoolAppASPv2/publish
+  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.schoolAppV2_1a46 }}
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 6.0.x
-  WORKING_DIRECTORY: SchoolAppASPv2.Identity
+  WORKING_DIRECTORY: SchoolAppASPv2
 jobs:
   build-and-deploy:
     runs-on: windows-latest
