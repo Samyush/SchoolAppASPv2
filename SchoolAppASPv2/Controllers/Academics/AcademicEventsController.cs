@@ -8,7 +8,7 @@ namespace SchoolAppASPv2.Controllers.Accademics
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExamEventsController : ControllerBase
+    public class AcademicEventsController : ControllerBase
     {   
         // GET: api/<ExamController>
         [HttpGet]

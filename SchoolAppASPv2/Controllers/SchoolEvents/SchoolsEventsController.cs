@@ -7,7 +7,7 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SportsEventsController : ControllerBase
+    public class SchoolsEventsController : ControllerBase
     {
         // GET: api/<SportsController>
         [HttpGet]
