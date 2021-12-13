@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace SchoolAppASPv2.Application.Common.Interface
 {
-    public interface IAcademicEventsService
+    public interface IUserServices
     {
-        Events GetEvents();
-        Events UpdateEvents();
-        Events DeleteEvents();
+        UserPass GetUser();
 
+        UserPass GetById(int id);
+
+        UserPass Authenticate(string username, string password);
     }
 }

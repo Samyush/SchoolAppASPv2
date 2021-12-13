@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace SchoolAppASPv2.Core.Entities
     [Table("userpass", Schema = "dbo")]
     public class UserPass
     {
+        [Key]
         public int Id { get; set; }
 
         public string Name { get; set; }
