@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SchoolAppASPv2.Application.Common.Interface;
 using SchoolAppASPv2.Application.RequestModel;
 using SchoolAppASPv2.Core.Entities;
 using SchoolAppASPv2.Infastructure.Services;
@@ -13,6 +14,13 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
     [ApiController]
     public class SchoolsEventsController : ControllerBase
     {
+
+        private readonly ISchoolEventsService _services;
+
+        public SchoolsEventsController(ISchoolEventsService services)
+        {
+            this._services = services;
+        }
         // GET: api/<SportsController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -29,25 +37,29 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 
         // POST api/<SportsController>
         [HttpPost]
-        public async Task<Events> Post([FromBody] EventModel model)
+        public async Task<ActionResult<Events>> Post([FromBody] Events model)
         {
             if (ModelState.IsValid)
             {
                 var eventData = new Events {
+                    Id = model.Id,
                     EventName = model.EventName,
-                    EventVenue = model.Venue,
-                    EventDateTime = model.EventDate,
+                    EventVenue = model.EventVenue,
+                    EventDateTime = model.EventDateTime,
+                    EventStatus = model.EventStatus,
                     
                     //Accademic Events are catogerized as 1 and Extra Act are 0
-                    EventType = 0,
+                    EventType = model.EventType,
 
                     //on event add, it is automatically set to true
                     //EventStatus = model.
                 };
 
-                //var result = await new SchoolEventsServices().AddEvents(eventData);
+                //why the data cant be passes as below??
+                //SchoolEventsServices schoolService = new SchoolEventsServices();
+                var result = await _services.AddEvents(eventData);
             }
-        return null;
+            return NotFound();
         }
 
         // PUT api/<SportsController>/5

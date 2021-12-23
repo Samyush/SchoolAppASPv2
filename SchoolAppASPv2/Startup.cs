@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SchoolAppASPv2.Application;
 using SchoolAppASPv2.Infastructure;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,9 @@ namespace SchoolAppASPv2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpContextAccessor();
-            services.AddControllers();
+            services.AddApplication();
             services.AddInfrastructure(Configuration);
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SchoolAppASPv2", Version = "v1" });

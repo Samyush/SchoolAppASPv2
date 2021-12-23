@@ -25,7 +25,7 @@ namespace SchoolAppASPv2.Infastructure
                          configuration.GetConnectionString("SchoolAppAspConnection"),
                          b => b.MigrationsAssembly(typeof(SchoolAppAspDbContext).Assembly.FullName)));
 
-            services.AddScoped<ISchoolAppAspDbContext>(provider => (ISchoolAppAspDbContext)provider.GetService<SchoolAppAspDbContext>());
+            services.AddScoped(provider => (ISchoolAppAspDbContext)provider.GetService<SchoolAppAspDbContext>());
             services.AddHttpContextAccessor();
             services.AddTransient<IUserServices, UserService>();
             services.AddTransient<IDateTimeService, DateTimeService>();

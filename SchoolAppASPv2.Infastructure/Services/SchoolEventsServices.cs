@@ -11,9 +11,10 @@ namespace SchoolAppASPv2.Infastructure.Services
 {
     public class SchoolEventsServices : ISchoolEventsService
     {
-        public async Task<Events> AddEvents(dynamic data)
+        public async Task<IEnumerable<Events>> AddEvents(dynamic data)
         {
-            throw new NotImplementedException();
+            return data;
+            //throw new NotImplementedException();
         }
 
         public Events GetEvents()
