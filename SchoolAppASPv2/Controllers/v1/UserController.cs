@@ -67,7 +67,7 @@ namespace SchoolAppASPv2.Controllers.v1
             return Ok(new 
             { 
                 Id = user.Id,
-                Username = user.Name,
+                Username = user.UserName,
                 Token = tokenString,
             });
         }

@@ -9,10 +9,10 @@ namespace SchoolAppASPv2.Application.Common.Interface
 {
     public interface IUserServices
     {
-        UserPass GetUser();
+        AspNetUsers GetUser();
 
-        UserPass GetById(int id);
+        AspNetUsers GetById(int id);
 
-        UserPass Authenticate(string username, string password);
+        AspNetUsers Authenticate(string username, string password);
     }
 }

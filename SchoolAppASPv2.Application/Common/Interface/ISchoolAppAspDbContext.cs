@@ -10,9 +10,9 @@ namespace SchoolAppASPv2.Application.Common.Interface
 {
     public interface ISchoolAppAspDbContext
     {
-        public DbSet<UserPass> Users { get; set; }
+        //public DbSet<AspNetUsers> Users { get; set; }
 
-        public DbSet<UserPass> UserPass { get; set; }
+        public DbSet<AspNetUsers> AspNetUsers { get; set; }
 
 
     }

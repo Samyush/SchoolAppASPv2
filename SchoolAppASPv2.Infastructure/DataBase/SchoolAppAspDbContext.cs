@@ -14,8 +14,9 @@ namespace SchoolAppASPv2.Infastructure.DataBase
     class SchoolAppAspDbContext : DbContext, ISchoolAppAspDbContext
     {
         private readonly IDateTimeService _dateTime;
-        public DbSet<UserPass> Users { get; set; }
-        public DbSet<UserPass> UserPass { get; set; }
+        //public DbSet<AspNetUsers> Users { get; set; }
+        
+        public DbSet<AspNetUsers> AspNetUsers { get; set; }
         public DbSet<Events> Events { get; set; }
         public DbSet<LineItem> LineItems { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using SchoolAppASPv2.Application.Common.Interface;
+using SchoolAppASPv2.Application.RequestModel;
 using SchoolAppASPv2.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,26 +9,30 @@ using System.Threading.Tasks;
 
 namespace SchoolAppASPv2.Infastructure.Services
 {
-    public class AcademicEventsServices : IAcademicEventsService
+    public class SchoolEventsServices : ISchoolEventsService
     {
-        public Events AddEvents()
+        public async Task<Events> AddEvents(dynamic data)
         {
             throw new NotImplementedException();
         }
 
-        Events IAcademicEventsService.GetEvents()
+        public Events GetEvents()
         {
             throw new NotImplementedException();
         }
 
-        Events IAcademicEventsService.UpdateEvents()
+        public Events UpdateEvents(int id)
         {
             throw new NotImplementedException();
         }
-        Events IAcademicEventsService.DeleteEvents()
+        public Events DeleteEvents(int id)
         {
             throw new NotImplementedException();
         }
 
+        public Task AddEvents(Events eventData)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

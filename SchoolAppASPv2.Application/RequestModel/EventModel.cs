@@ -16,6 +16,10 @@ namespace SchoolAppASPv2.Application.RequestModel
         [Required]
         public DateTime EventDate { get; set; }
 
+        //Accademic Events are catogerized as 1 and Extra Act are 0
+        public int EventType { get; set; }
+
         public string Venue { get; set; }
+
     }
 }

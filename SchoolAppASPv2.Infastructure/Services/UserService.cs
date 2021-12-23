@@ -26,20 +26,20 @@ namespace SchoolAppASPv2.Infastructure.Services
 
         private ISchoolAppAspDbContext _context;
 
-        public UserPass Authenticate(string username, string password)
+        public AspNetUsers Authenticate(string username, string password)
         {
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 return null;
 
-            var user = _context.UserPass.SingleOrDefault(x => x.Name == username);
+            var user = _context.AspNetUsers.SingleOrDefault(x => x.UserName == username);
 
             // check if username exists
             if (user == null)
                 return null;
 
             var hash = password.CalculateMD5Hash();
-            if (user.Password != hash)
+            if (user.PasswordHash != hash)
             {
                 return null;
 
@@ -50,12 +50,12 @@ namespace SchoolAppASPv2.Infastructure.Services
         }
 
 
-        public UserPass GetById(int id)
+        public AspNetUsers GetById(int id)
         {
-            return _context.UserPass.Find(id);
+            return _context.AspNetUsers.Find(id);
         }
 
-        public UserPass GetUser()
+        public AspNetUsers GetUser()
         {
             var userId = int.Parse(UserId);
             var user = GetById(userId);

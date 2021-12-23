@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace SchoolAppASPv2.Core.Entities
 {
-    [Table("userpass", Schema = "dbo")]
-    public class UserPass
+    [Table("AspNetUsers", Schema = "dbo")]
+    public class AspNetUsers
     {
         [Key]
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string UserName { get; set; }
 
-        public string Email { get; set; }
+        //public string Email { get; set; }
 
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
 
-        public bool IsActive { get; set; }
+        //public bool IsActive { get; set; }
     }
 }

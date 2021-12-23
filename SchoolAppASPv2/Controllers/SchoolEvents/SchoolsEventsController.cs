@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolAppASPv2.Application.RequestModel;
 using SchoolAppASPv2.Core.Entities;
+using SchoolAppASPv2.Infastructure.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,9 +29,25 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 
         // POST api/<SportsController>
         [HttpPost]
-        public Events Post([FromBody] EventModel model)
+        public async Task<Events> Post([FromBody] EventModel model)
         {
-            return null ;
+            if (ModelState.IsValid)
+            {
+                var eventData = new Events {
+                    EventName = model.EventName,
+                    EventVenue = model.Venue,
+                    EventDateTime = model.EventDate,
+                    
+                    //Accademic Events are catogerized as 1 and Extra Act are 0
+                    EventType = 0,
+
+                    //on event add, it is automatically set to true
+                    //EventStatus = model.
+                };
+
+                //var result = await new SchoolEventsServices().AddEvents(eventData);
+            }
+        return null;
         }
 
         // PUT api/<SportsController>/5
