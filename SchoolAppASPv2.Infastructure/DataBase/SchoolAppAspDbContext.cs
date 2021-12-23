@@ -4,6 +4,7 @@ using SchoolAppASPv2.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace SchoolAppASPv2.Infastructure.DataBase
         private readonly IDateTimeService _dateTime;
         public DbSet<UserPass> Users { get; set; }
         public DbSet<UserPass> UserPass { get; set; }
+        public DbSet<Events> Events { get; set; }
+        public DbSet<LineItem> LineItems { get; set; }
 
         public SchoolAppAspDbContext(DbContextOptions<SchoolAppAspDbContext> options,
             IDateTimeService dateTime)
@@ -24,14 +27,14 @@ namespace SchoolAppASPv2.Infastructure.DataBase
             Database.EnsureCreated();
         }
 
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //{
-        //    builder.Entity<LineItem>().HasNoKey().ToView(null);
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<LineItem>().HasNoKey().ToView(null);
 
-        //    builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        //    base.OnModelCreating(builder);
-        //}
+            base.OnModelCreating(builder);
+        }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

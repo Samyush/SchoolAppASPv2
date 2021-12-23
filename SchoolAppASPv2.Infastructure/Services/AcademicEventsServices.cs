@@ -10,8 +10,7 @@ namespace SchoolAppASPv2.Infastructure.Services
 {
     public class AcademicEventsServices : IAcademicEventsService
     {
-       
-        Events IAcademicEventsService.DeleteEvents()
+        public Events AddEvents()
         {
             throw new NotImplementedException();
         }
@@ -25,5 +24,10 @@ namespace SchoolAppASPv2.Infastructure.Services
         {
             throw new NotImplementedException();
         }
+        Events IAcademicEventsService.DeleteEvents()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

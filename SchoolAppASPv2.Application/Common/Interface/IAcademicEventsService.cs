@@ -9,6 +9,7 @@ namespace SchoolAppASPv2.Application.Common.Interface
 {
     public interface IAcademicEventsService
     {
+        Events AddEvents();
         Events GetEvents();
         Events UpdateEvents();
         Events DeleteEvents();

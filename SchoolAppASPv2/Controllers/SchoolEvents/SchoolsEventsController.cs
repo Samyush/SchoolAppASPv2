@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SchoolAppASPv2.Application.RequestModel;
+using SchoolAppASPv2.Core.Entities;
 using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,27 +20,30 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 
         // GET api/<SportsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Events Get(EventModel model)
         {
-            return "value";
+            return null;
         }
 
         // POST api/<SportsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Events Post([FromBody] EventModel model)
         {
+            return null ;
         }
 
         // PUT api/<SportsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public Events Put(int id, [FromBody] EventModel model)
         {
+            return null;;
         }
 
         // DELETE api/<SportsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public Events Delete(EventModel model)
         {
+            return null;
         }
     }
 }
