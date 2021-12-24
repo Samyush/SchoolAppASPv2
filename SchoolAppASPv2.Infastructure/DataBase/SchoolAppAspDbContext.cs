@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SchoolAppASPv2.Infastructure.DataBase
 {
-    class SchoolAppAspDbContext : DbContext, ISchoolAppAspDbContext
+    public class SchoolAppAspDbContext : DbContext, ISchoolAppAspDbContext
     {
         private readonly IDateTimeService _dateTime;
         //public DbSet<AspNetUsers> Users { get; set; }

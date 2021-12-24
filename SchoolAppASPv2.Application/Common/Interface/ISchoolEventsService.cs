@@ -10,10 +10,10 @@ namespace SchoolAppASPv2.Application.Common.Interface
 {
     public interface ISchoolEventsService
     {
-        Task<IEnumerable<Events>> AddEvents(dynamic eventData);
+        Task<dynamic> AddEvents(Events eventData);
         Events GetEvents();
         Events UpdateEvents(int id);
-        Events DeleteEvents(int id);
+        Task<Events> DeleteEventsAsync(int id);
 
     }
 }

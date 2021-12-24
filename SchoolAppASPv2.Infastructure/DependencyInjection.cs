@@ -29,7 +29,7 @@ namespace SchoolAppASPv2.Infastructure
             services.AddHttpContextAccessor();
             services.AddTransient<IUserServices, UserService>();
             services.AddTransient<IDateTimeService, DateTimeService>();
-
+            services.AddTransient<ISchoolEventsService, SchoolEventsServices>();
             return services;
            
         }

@@ -1,6 +1,7 @@
 ﻿using SchoolAppASPv2.Application.Common.Interface;
 using SchoolAppASPv2.Application.RequestModel;
 using SchoolAppASPv2.Core.Entities;
+using SchoolAppASPv2.Infastructure.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,25 @@ namespace SchoolAppASPv2.Infastructure.Services
 {
     public class SchoolEventsServices : ISchoolEventsService
     {
-        public async Task<IEnumerable<Events>> AddEvents(dynamic data)
+        private readonly SchoolAppAspDbContext databaseContext;
+
+        public SchoolEventsServices(SchoolAppAspDbContext db)
         {
-            return data;
+            databaseContext = db;
+        }
+        public async Task<dynamic> AddEvents(Events data)
+        {
+            try
+            {
+                databaseContext.Events.Add(data);
+                var result = await databaseContext.SaveChangesAsync();
+                return result;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
             //throw new NotImplementedException();
         }
 
@@ -26,14 +43,13 @@ namespace SchoolAppASPv2.Infastructure.Services
         {
             throw new NotImplementedException();
         }
-        public Events DeleteEvents(int id)
+        public async Task<Events> DeleteEventsAsync(int id)
         {
-            throw new NotImplementedException();
+            var toDel = databaseContext.Events.Where(x => x.Id == id).First();
+            databaseContext.Events.Remove(toDel);
+            var result = await databaseContext.SaveChangesAsync();
+            return toDel;
         }
 
-        public Task AddEvents(Events eventData)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

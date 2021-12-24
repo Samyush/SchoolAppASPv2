@@ -42,7 +42,7 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
             if (ModelState.IsValid)
             {
                 var eventData = new Events {
-                    Id = model.Id,
+                    //Id = model.Id,
                     EventName = model.EventName,
                     EventVenue = model.EventVenue,
                     EventDateTime = model.EventDateTime,
@@ -58,8 +58,14 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
                 //why the data cant be passes as below??
                 //SchoolEventsServices schoolService = new SchoolEventsServices();
                 var result = await _services.AddEvents(eventData);
+                if(result != null)
+                {
+
+                    return Ok(result);
+                }
             }
-            return NotFound();
+            //return NotFound();
+            return Ok("success");
         }
 
         // PUT api/<SportsController>/5
@@ -71,8 +77,13 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 
         // DELETE api/<SportsController>/5
         [HttpDelete("{id}")]
-        public Events Delete(EventModel model)
+        public async Task<ActionResult<Events>> Delete(int id)
         {
+            var result = await _services.DeleteEventsAsync(id);
+            if(result != null)
+            {
+                return Ok("success");
+            }
             return null;
         }
     }
