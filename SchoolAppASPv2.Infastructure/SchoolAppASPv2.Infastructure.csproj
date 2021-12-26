@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SchoolAppASPv2.Application\SchoolAppASPv2.Application.csproj" />
     <ProjectReference Include="..\SchoolAppASPv2.Core\SchoolAppASPv2.Core.csproj" />
+    <ProjectReference Include="..\SchoolAppASPv2.Identity\SchoolAppASPv2.Identity.csproj" />
   </ItemGroup>
 
 </Project>

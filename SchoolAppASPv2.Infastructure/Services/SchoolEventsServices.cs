@@ -1,6 +1,7 @@
 ﻿using SchoolAppASPv2.Application.Common.Interface;
 using SchoolAppASPv2.Application.RequestModel;
 using SchoolAppASPv2.Core.Entities;
+using SchoolAppASPv2.Identity.Models;
 using SchoolAppASPv2.Infastructure.DataBase;
 using System;
 using System.Collections.Generic;
@@ -34,9 +35,17 @@ namespace SchoolAppASPv2.Infastructure.Services
             //throw new NotImplementedException();
         }
 
-        public Events GetEvents()
+        //public IEnumerable<dynamic> GetEvents()
+        //the below way sends data through api with result and data two different types
+        public dynamic GetEvents()
         {
-            throw new NotImplementedException();
+            var data = databaseContext.Events.ToArray();
+            var response = new ResponseModel
+            {
+                result = "success",
+                data = data
+            };
+            return response;
         }
 
         public Events UpdateEvents(int id)

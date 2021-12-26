@@ -23,14 +23,16 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
         }
         // GET: api/<SportsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<dynamic> Get()
         {
-            return new string[] { "value1", "value2" };
+            //return new Events[] { "value1", "value2" };
+            var result = _services.GetEvents();
+            return Ok(result);
         }
 
         // GET api/<SportsController>/5
         [HttpGet("{id}")]
-        public Events Get(EventModel model)
+        public Events Get(int id)
         {
             return null;
         }
