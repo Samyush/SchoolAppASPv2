@@ -1,5 +1,23 @@
-    public class ApiResponse<T> => what does T stand for (Generic Classes)
+﻿    public class ApiResponse<T> => what does T stand for (Generic Classes)
 
     to know the use of IMapper in UserController of web app of src
 
     SchoolEventsController.cs line 56 why cant we use Class().Method(Data) to pass data here as in flutter
+
+    dapper, ado.net and entity framework
+
+    You could use StatusCode(???) to return any HTTP status code.
+
+
+    Also, you can use dedicated results:
+
+    Success:
+
+    return Ok() ← Http status code 200
+    return Created() ← Http status code 201
+    return NoContent(); ← Http status code 204
+    Client Error:
+
+    return BadRequest(); ← Http status code 400
+    return Unauthorized(); ← Http status code 401
+    return NotFound(); ← Http status code 404

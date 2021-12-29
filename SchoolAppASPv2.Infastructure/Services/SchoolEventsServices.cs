@@ -48,9 +48,20 @@ namespace SchoolAppASPv2.Infastructure.Services
             return response;
         }
 
-        public Events UpdateEvents(int id)
+        public async Task<dynamic> UpdateEvents(Events eventChanges)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            try
+            {
+                databaseContext.Attach(eventChanges);
+                databaseContext.Entry(eventChanges).Property(p => p.EventName).IsModified = true;
+                var result = await databaseContext.SaveChangesAsync();
+                return result;
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
         }
         public async Task<Events> DeleteEventsAsync(int id)
         {

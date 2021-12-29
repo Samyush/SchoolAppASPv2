@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SchoolAppASPv2.Application.Common.Interface;
 using SchoolAppASPv2.Application.RequestModel;
 using SchoolAppASPv2.Core.Entities;
@@ -22,6 +23,7 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
             this._services = services;
         }
         // GET: api/<SportsController>
+        //[Authorize]
         [HttpGet]
         public ActionResult<dynamic> Get()
         {
@@ -72,9 +74,10 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 
         // PUT api/<SportsController>/5
         [HttpPut("{id}")]
-        public Events Put(int id, [FromBody] EventModel model)
+        public dynamic Put(int id, [FromBody] Events model)
         {
-            return null;;
+            var result = _services.UpdateEvents(model);
+            return result; ;
         }
 
         // DELETE api/<SportsController>/5
