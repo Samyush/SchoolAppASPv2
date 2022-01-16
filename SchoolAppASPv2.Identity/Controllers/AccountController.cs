@@ -2,9 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using SchoolAppASPv2.Identity.Models;
 using SchoolAppASPv2.Identity.Models.AccountModels;
 using SchoolAppASPv2.Identity.Services;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +39,7 @@ namespace SchoolAppASPv2.Identity.Controllers
         //the addition and removal of [ValidateAntiForgeryToken] gives
         //400 and
         //415 error code
-        [Route("login")]
+        [Route("loginOld")]
         public async Task<IActionResult> Login(LoginModel model, string? returnUrl = null)
         {
             if (ModelState.IsValid)
@@ -92,6 +96,57 @@ namespace SchoolAppASPv2.Identity.Controllers
                 }
             }
             return Ok(false);
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        {
+            var user = await _userManager.FindByNameAsync(model.Email);
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            {
+                var userRoles = await _userManager.GetRolesAsync(user);
+
+                var authClaims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
+
+                foreach (var userRole in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                }
+
+                var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+
+                var token = new JwtSecurityToken(
+                    issuer: _configuration["JWT:ValidIssuer"],
+                    audience: _configuration["JWT:ValidAudience"],
+                    expires: DateTime.Now.AddHours(3),
+                    claims: authClaims,
+                    signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                    );
+
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token),
+                    expiration = token.ValidTo
+                });
+            }
+            return Unauthorized();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("logout")]
+        public ActionResult Logout()
+        {
+            var userName = User?.Identity?.Name;
+
+            //JWT.RemoveRefreshTokenByUserName(userName); // can be more specific to ip, user agent, device name, etc.
+            //_logger.LogInformation($"User [{userName}] logged out the system.");
+            return Ok(userName);
         }
 
         [HttpPost]

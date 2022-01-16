@@ -1,0 +1,1 @@
+https://www.tutorialsteacher.com/csharp/csharp-anonymous-type => C# tutorials
