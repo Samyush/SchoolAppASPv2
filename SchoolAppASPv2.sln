@@ -19,8 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolAppASPv2.Identity", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6DBE953-8102-4D50-9463-A560C3F37B0B}"
 	ProjectSection(SolutionItems) = preProject
-		cSharptxt.txt = cSharptxt.txt
-		Queries.txt = Queries.txt
+		cSharptxt.md = cSharptxt.md
+		Queries.md = Queries.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityAuthJWT", "IdentityAuthJWT", "{F53134A4-D743-4FD3-B82B-9E58304A228D}"

@@ -17,14 +17,25 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
+
+        //the below is just for work but not necessary
         private readonly SignInManager<ApplicationUser> signInManager;
+
+        //private readonly ITokenManager tokenManager;
+
         private readonly IConfiguration _configuration;
 
-        public AuthenticateController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,SignInManager<ApplicationUser> signInManager, IConfiguration configuration)
+        public AuthenticateController(UserManager<ApplicationUser> userManager, 
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<ApplicationUser> signInManager, 
+            IConfiguration configuration
+            //ITokenManager tokenManager
+            )
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
+            //this.tokenManager = tokenManager;
             _configuration = configuration;
         }
 
@@ -125,10 +136,10 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-
+            //await tokenManager.DeactivateCurrentAsync();
             //JWT.RemoveRefreshTokenByUserName(userName); // can be more specific to ip, user agent, device name, etc.
             //_logger.LogInformation($"User [{userName}] logged out the system.");
-            return Ok();
+            return SignOut();
         }
 
         [HttpPost]
@@ -136,20 +147,13 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         [Route("currentUser")]
         public IActionResult CurrentUser()
         {
-            //    UserDetails = 
-            var user 
-                //= User?.Identity;
-
-                = new { 
-
+            var user = new { 
                 UserName = User?.Identity?.Name,
                 UserEmail = User?.Identity,
                 UserDetails = userManager.GetUserAsync(User)
                 //UserDetails = User?.Claims?.ToList(),
             };
 
-            //JWT.RemoveRefreshTokenByUserName(userName); // can be more specific to ip, user agent, device name, etc.
-            //_logger.LogInformation($"User [{userName}] logged out the system.");
             return Ok(user);
         }
 

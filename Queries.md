@@ -1,6 +1,9 @@
-﻿    public class ApiResponse<T> => what does T stand for (Generic Classes)
+﻿Getting started
+####### @Author samyush
 
-    Generic type is declared by specifying a type parameter in an angle brackets after a type name
+# Question: public class ApiResponse<T> => what does T stand for (Generic Classes) 
+
+# Answer:   Generic type is declared by specifying a type parameter in an angle brackets after a type name
     eg: TypeName<T> where "T" is a type parameter 
     
     class DataStore<T>
@@ -15,6 +18,7 @@
     and also:
     DataStore<Int32> store1 = new DataStore<Int32>();
 
+#################################################################################################
     to know the use of IMapper in UserController of web app of src
 
     SchoolEventsController.cs line 56 why cant we use Class().Method(Data) to pass data here as in flutter => because using of Interface sercvices it makes this happen and //
@@ -23,8 +27,10 @@
 
     dapper, ado.net and entity framework
 
-    You could use StatusCode(???) to return any HTTP status code.
+#################################################################################################
 
+### Status code: =>>  
+    You could use StatusCode(???) to return any HTTP status code.
 
     Also, you can use dedicated results:
 
@@ -41,5 +47,8 @@
     return Unauthorized(); ← Http status code 401
     return NotFound(); ← Http status code 404
 
+#################################################################################################
+
+### Web API JWT
     //web API authentication JWT link https://www.c-sharpcorner.com/article/authentication-and-authorization-in-asp-net-core-web-api-with-json-web-tokens/
 
