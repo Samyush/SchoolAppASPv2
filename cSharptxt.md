@@ -15,3 +15,5 @@ https://docs.identityserver.io/en/latest/quickstarts/2_interactive_aspnetcore.ht
 
 https://docs.microsoft.com/en-us/previous-versions/visualstudio/dn253016(v=vs.111)?redirectedfrom=MSDN => The Microsoft.AspNet.Identity namespace contains classes and 
 																										  interfaces related to managing users and roles for ASP.NET Identity.
+
+https://hub.docker.com/_/microsoft-mssql-server?tab=description => docker database setup guide
