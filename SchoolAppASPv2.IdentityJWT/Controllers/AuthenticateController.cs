@@ -135,9 +135,11 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         [Route("logout")]
         public async Task<IActionResult> Logout()
         {
+            var userName = User?.Identity?.Name;
+
             await signInManager.SignOutAsync();
             //await tokenManager.DeactivateCurrentAsync();
-            //JWT.RemoveRefreshTokenByUserName(userName); // can be more specific to ip, user agent, device name, etc.
+            //JwtSecurityToken.RemoveRefreshTokenByUserName(userName); // can be more specific to ip, user agent, device name, etc.
             //_logger.LogInformation($"User [{userName}] logged out the system.");
             return SignOut();
         }
