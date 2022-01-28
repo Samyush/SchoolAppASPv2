@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -136,12 +137,12 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         public async Task<IActionResult> Logout()
         {
             var userName = User?.Identity?.Name;
-
-            await signInManager.SignOutAsync();
+            await HttpContext.SignOutAsync();
+            //await signInManager.SignOutAsync();
             //await tokenManager.DeactivateCurrentAsync();
             //JwtSecurityToken.RemoveRefreshTokenByUserName(userName); // can be more specific to ip, user agent, device name, etc.
             //_logger.LogInformation($"User [{userName}] logged out the system.");
-            return SignOut();
+            return Ok();
         }
 
         [HttpPost]
