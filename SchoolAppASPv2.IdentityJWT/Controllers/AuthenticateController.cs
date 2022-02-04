@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SchoolAppASPv2.IdentityJWT.Model;
 using SchoolAppASPv2.IdentityJWT.Roles;
+using SchoolAppASPv2.IdentityJWT.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -17,6 +18,7 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly ITokenManager _tokenManager;
 
         //the below is just for work but not necessary
         private readonly SignInManager<ApplicationUser> signInManager;
@@ -28,14 +30,15 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         public AuthenticateController(UserManager<ApplicationUser> userManager, 
             RoleManager<IdentityRole> roleManager,
             SignInManager<ApplicationUser> signInManager, 
-            IConfiguration configuration
+            IConfiguration configuration,
+            ITokenManager tokenManager
             //ITokenManager tokenManager
             )
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
-            //this.tokenManager = tokenManager;
+            this._tokenManager = tokenManager;
             _configuration = configuration;
         }
 
@@ -165,6 +168,14 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         public ActionResult Authenticate()
         {
             return Ok();
+        }
+
+        [HttpPost("tokens/cancel")]
+        public async Task<IActionResult> CancelAccessToken()
+        {
+            await _tokenManager.DeactivateCurrentAsync();
+
+            return NoContent();
         }
 
     }
