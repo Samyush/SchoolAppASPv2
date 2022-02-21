@@ -1,4 +1,5 @@
-﻿using SchoolAppASPv2.Application.Common.Interface;
+﻿using Microsoft.AspNetCore.Mvc;
+using SchoolAppASPv2.Application.Common.Interface;
 using SchoolAppASPv2.Application.RequestModel;
 using SchoolAppASPv2.Core.Entities;
 using SchoolAppASPv2.Identity.Models;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SchoolAppASPv2.Infastructure.Services
 {
-    public class SchoolEventsServices : ISchoolEventsService
+    public class SchoolEventsServices<T> : ISchoolEventsService<T>
     {
         private readonly SchoolAppAspDbContext databaseContext;
 
@@ -46,6 +47,23 @@ namespace SchoolAppASPv2.Infastructure.Services
                 data = data
             };
             return response;
+        }
+
+        public Task<T> GetEventSpecific(int id)
+        {
+            try
+            {
+                var data = databaseContext.Events.Where(x => x.Id == id).ToList();
+                var response = new ResponseModel
+                {
+                    result = "success",
+                    data = data.ToList()
+                };
+                return response;
+            }catch (Exception)
+            {
+                return null;
+            }
         }
 
         public async Task<dynamic> UpdateEvents(Events eventChanges)

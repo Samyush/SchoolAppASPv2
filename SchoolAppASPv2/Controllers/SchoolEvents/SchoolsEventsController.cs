@@ -13,12 +13,12 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SchoolsEventsController : ControllerBase
+    public class SchoolsEventsController<T> : ControllerBase
     {
 
-        private readonly ISchoolEventsService _services;
+        private readonly ISchoolEventsService<T> _services;
 
-        public SchoolsEventsController(ISchoolEventsService services)
+        public SchoolsEventsController(ISchoolEventsService<T> services)
         {
             this._services = services;
         }
