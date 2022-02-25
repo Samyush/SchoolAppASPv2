@@ -13,12 +13,12 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SchoolsEventsController<T> : ControllerBase
+    public class SchoolsEventsController : ControllerBase
     {
 
-        private readonly ISchoolEventsService<T> _services;
+        private readonly ISchoolEventsService _services;
 
-        public SchoolsEventsController(ISchoolEventsService<T> services)
+        public SchoolsEventsController(ISchoolEventsService services)
         {
             this._services = services;
         }
@@ -34,9 +34,10 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 
         // GET api/<SportsController>/5
         [HttpGet("{id}")]
-        public Events Get(int id)
+        public ActionResult<dynamic> Get(int id)
         {
-            return null;
+            var result = _services.GetEventSpecific(id);
+            return Ok(result);
         }
 
         // POST api/<SportsController>

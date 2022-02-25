@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SchoolAppASPv2.Infastructure.Services
 {
-    public class SchoolEventsServices<T> : ISchoolEventsService<T>
+    public class SchoolEventsServices : ISchoolEventsService
     {
         private readonly SchoolAppAspDbContext databaseContext;
 
@@ -49,7 +49,7 @@ namespace SchoolAppASPv2.Infastructure.Services
             return response;
         }
 
-        public Task<T> GetEventSpecific(int id)
+        public dynamic GetEventSpecific(int id)
         {
             try
             {

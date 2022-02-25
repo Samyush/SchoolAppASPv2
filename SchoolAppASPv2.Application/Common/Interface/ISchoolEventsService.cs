@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace SchoolAppASPv2.Application.Common.Interface
 {
-    public interface ISchoolEventsService<T>
+    public interface ISchoolEventsService
     {
         Task<dynamic> AddEvents(Events eventData);
         //IEnumerable<dynamic> GetEvents();
         dynamic GetEvents();
 
-        Task<T> GetEventSpecific(int id);
+        dynamic GetEventSpecific(int id);
         Task<dynamic> UpdateEvents(Events eventChanges);
         Task<Events> DeleteEventsAsync(int id);
 
