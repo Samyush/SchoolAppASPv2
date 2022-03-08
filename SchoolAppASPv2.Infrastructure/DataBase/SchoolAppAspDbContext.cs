@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SchoolAppASPv2.Infastructure.DataBase
+namespace SchoolAppASPv2.Infrastructure.DataBase
 {
     public class SchoolAppAspDbContext : DbContext, ISchoolAppAspDbContext
     {
@@ -18,6 +18,8 @@ namespace SchoolAppASPv2.Infastructure.DataBase
         
         public DbSet<AspNetUsers> AspNetUsers { get; set; }
         public DbSet<Events> Events { get; set; }
+        public DbSet<Users> User { get; set; }
+        public DbSet<UserType> UserTypes { get; set; }
         public DbSet<LineItem> LineItems { get; set; }
 
         public SchoolAppAspDbContext(DbContextOptions<SchoolAppAspDbContext> options,

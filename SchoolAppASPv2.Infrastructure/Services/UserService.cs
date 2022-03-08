@@ -2,7 +2,7 @@
 using SchoolAppASPv2.Application.Common;
 using SchoolAppASPv2.Application.Common.Interface;
 using SchoolAppASPv2.Core.Entities;
-using SchoolAppASPv2.Infastructure.DataBase;
+using SchoolAppASPv2.Infrastructure.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolAppASPv2.Infastructure.Services
+namespace SchoolAppASPv2.Infrastructure.Services
 {
     public class UserService : IUserServices
     {

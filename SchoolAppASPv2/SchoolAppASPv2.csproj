@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
       <PrivateAssets>all</PrivateAssets>
@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SchoolAppASPv2.Application\SchoolAppASPv2.Application.csproj" />
-    <ProjectReference Include="..\SchoolAppASPv2.Infastructure\SchoolAppASPv2.Infastructure.csproj" />
+    <ProjectReference Include="..\SchoolAppASPv2.Infrastructure\SchoolAppASPv2.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

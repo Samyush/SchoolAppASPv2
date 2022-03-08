@@ -13,10 +13,16 @@ namespace SchoolAppASPv2.Core.Entities
     public class Users
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
+        
+        public int UserTypeId { get; set; }
+        
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public  bool IsActive { get; set; }
+        
+        [ForeignKey("UserTypeId")] 
+        public UserType UserType { get; set; }
     }
 }

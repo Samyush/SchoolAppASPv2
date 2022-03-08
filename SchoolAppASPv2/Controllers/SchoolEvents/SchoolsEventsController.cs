@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SchoolAppASPv2.Application.Common.Interface;
-using SchoolAppASPv2.Application.RequestModel;
 using SchoolAppASPv2.Core.Entities;
-using SchoolAppASPv2.Infastructure.Services;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -34,9 +30,10 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 
         // GET api/<SportsController>/5
         [HttpGet("{id}")]
-        public Events Get(int id)
+        public ActionResult<dynamic> Get(int id)
         {
-            return null;
+            var result = _services.GetSpecificEvents(id); 
+            return result;
         }
 
         // POST api/<SportsController>
@@ -52,7 +49,7 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
                     EventDateTime = model.EventDateTime,
                     EventStatus = model.EventStatus,
                     
-                    //Accademic Events are catogerized as 1 and Extra Act are 0
+                    //Academic Events are categorized as 1 and Extra Act are 0
                     EventType = model.EventType,
 
                     //on event add, it is automatically set to true
@@ -77,7 +74,7 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
         public dynamic Put(int id, [FromBody] Events model)
         {
             var result = _services.UpdateEvents(model);
-            return result; ;
+            return result;
         }
 
         // DELETE api/<SportsController>/5

@@ -17,3 +17,7 @@ https://docs.microsoft.com/en-us/previous-versions/visualstudio/dn253016(v=vs.11
 																										  interfaces related to managing users and roles for ASP.NET Identity.
 
 https://hub.docker.com/_/microsoft-mssql-server?tab=description => docker database setup guide
+
+https://docs.microsoft.com/en-us/dotnet/api/system.identitymodel.tokens.jwt?view=azure-dotnet => JWT token guide
+
+https://docs.microsoft.com/en-us/dotnet/api/system.identitymodel.tokens.jwt.jwtsecuritytoken.-ctor?view=azure-dotnet => JWT token guide 2

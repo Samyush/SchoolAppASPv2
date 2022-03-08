@@ -20,20 +20,29 @@ builder.Services.Configure<AuthSettingModel>(builder.Configuration.GetSection("I
 builder.Services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
 
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
+builder.Services.AddDbContext<ApplicationDbContext>(options => {
+    options.UseSqlServer(
+                  builder.Configuration.GetConnectionString("SchoolAppAspConnection"),
+                  b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
 
-    // Configure the context to use Microsoft SQL Server.
-    options.UseSqlServer(builder.Configuration["ConnectionString"], sqlServerOptionsAction: sqlOptions =>
-    {
-        sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().Assembly.GetName().Name);
-    });
-
-    // Register the entity sets needed by OpenIddict.
-    // Note: use the generic overload if you need
-    // to replace the default OpenIddict entities.
     options.UseOpenIddict();
+
 });
+
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//{
+
+//    // Configure the context to use Microsoft SQL Server.
+//    options.UseSqlServer(builder.Configuration["ConnectionString"], sqlServerOptionsAction: sqlOptions =>
+//    {
+//        sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().Assembly.GetName().Name);
+//    });
+
+//    // Register the entity sets needed by OpenIddict.
+//    // Note: use the generic overload if you need
+//    // to replace the default OpenIddict entities.
+//    options.UseOpenIddict();
+//});
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                .AddRoles<IdentityRole>()

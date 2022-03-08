@@ -13,14 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolAppASPv2.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolAppASPv2.Core", "SchoolAppASPv2.Core\SchoolAppASPv2.Core.csproj", "{B3EE6CBF-D692-4D9B-9BC8-703E8270D33A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolAppASPv2.Infastructure", "SchoolAppASPv2.Infastructure\SchoolAppASPv2.Infastructure.csproj", "{6D4E070D-2AAD-4A03-A85E-2962170B7CAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolAppASPv2.Infrastructure", "SchoolAppASPv2.Infrastructure\SchoolAppASPv2.Infrastructure.csproj", "{6D4E070D-2AAD-4A03-A85E-2962170B7CAD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolAppASPv2.Identity", "SchoolAppASPv2.Identity\SchoolAppASPv2.Identity.csproj", "{924E4F58-7AE2-487D-810B-2E95975E85C6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6DBE953-8102-4D50-9463-A560C3F37B0B}"
 	ProjectSection(SolutionItems) = preProject
-		cSharptxt.md = cSharptxt.md
 		Queries.md = Queries.md
+		cSharpWebGuide.md = cSharpWebGuide.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityAuthJWT", "IdentityAuthJWT", "{F53134A4-D743-4FD3-B82B-9E58304A228D}"

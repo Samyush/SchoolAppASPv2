@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SchoolAppASPv2.Application;
-using SchoolAppASPv2.Infastructure;
+using SchoolAppASPv2.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolAppASPv2.Infastructure.Services
+namespace SchoolAppASPv2.Infrastructure.Services
 {
     public class DateTimeService : IDateTimeService
     {
