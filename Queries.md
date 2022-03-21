@@ -52,3 +52,6 @@
 ### Web API JWT
     //web API authentication JWT link https://www.c-sharpcorner.com/article/authentication-and-authorization-in-asp-net-core-web-api-with-json-web-tokens/
 
+##################################################################################################
+HttpContext => SignInAsync || SignOutAsync (url link : https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext?view=aspnetcore-6.0)
+
