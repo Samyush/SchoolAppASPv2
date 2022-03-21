@@ -34,9 +34,10 @@ namespace SchoolAppASPv2.Controllers.SchoolEvents
 
         // GET api/<SportsController>/5
         [HttpGet("{id}")]
-        public Events Get(int id)
+        public ActionResult<dynamic> Get(int id)
         {
-            return null;
+            var result = _services.GetEventSpecific(id);
+            return Ok(result);
         }
 
         // POST api/<SportsController>

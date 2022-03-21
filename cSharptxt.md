@@ -17,3 +17,5 @@ https://docs.microsoft.com/en-us/previous-versions/visualstudio/dn253016(v=vs.11
 																										  interfaces related to managing users and roles for ASP.NET Identity.
 
 https://hub.docker.com/_/microsoft-mssql-server?tab=description => docker database setup guide
+
+https://stackoverflow.com/questions/61368789/can-i-force-a-logout-or-expiration-of-a-jwt-token/61371845#61371845 => Logout guide for JWT

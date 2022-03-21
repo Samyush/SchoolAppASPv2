@@ -1,4 +1,5 @@
-﻿using SchoolAppASPv2.Application.RequestModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using SchoolAppASPv2.Application.RequestModel;
 using SchoolAppASPv2.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace SchoolAppASPv2.Application.Common.Interface
         Task<dynamic> AddEvents(Events eventData);
         //IEnumerable<dynamic> GetEvents();
         dynamic GetEvents();
+
+        dynamic GetEventSpecific(int id);
         Task<dynamic> UpdateEvents(Events eventChanges);
         Task<Events> DeleteEventsAsync(int id);
 

@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SchoolAppASPv2.IdentityJWT.Model;
 using SchoolAppASPv2.IdentityJWT.Roles;
+using SchoolAppASPv2.IdentityJWT.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -15,11 +16,12 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ITokenManager _tokenManager;
 
         //the below is just for work but not necessary
-        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         //private readonly ITokenManager tokenManager;
 
@@ -28,14 +30,15 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         public AuthenticateController(UserManager<ApplicationUser> userManager, 
             RoleManager<IdentityRole> roleManager,
             SignInManager<ApplicationUser> signInManager, 
-            IConfiguration configuration
+            IConfiguration configuration,
+            ITokenManager tokenManager
             //ITokenManager tokenManager
             )
         {
-            this.userManager = userManager;
-            this.roleManager = roleManager;
-            this.signInManager = signInManager;
-            //this.tokenManager = tokenManager;
+            this._userManager = userManager;
+            this._roleManager = roleManager;
+            this._signInManager = signInManager;
+            this._tokenManager = tokenManager;
             _configuration = configuration;
         }
 
@@ -43,10 +46,10 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = await userManager.FindByNameAsync(model.Username);
-            if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
+            var user = await _userManager.FindByNameAsync(model.Username);
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var userRoles = await userManager.GetRolesAsync(user);
+                var userRoles = await _userManager.GetRolesAsync(user);
 
                 var authClaims = new List<Claim>
                 {
@@ -82,7 +85,7 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            var userExists = await userManager.FindByNameAsync(model.Username);
+            var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
@@ -92,7 +95,7 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = model.Username
             };
-            var result = await userManager.CreateAsync(user, model.Password);
+            var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
@@ -103,7 +106,7 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         [Route("register-admin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
         {
-            var userExists = await userManager.FindByNameAsync(model.Username);
+            var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
@@ -113,18 +116,18 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = model.Username
             };
-            var result = await userManager.CreateAsync(user, model.Password);
+            var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-            if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
-                await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-            if (!await roleManager.RoleExistsAsync(UserRoles.User))
-                await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+            if (!await _roleManager.RoleExistsAsync(UserRoles.User))
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
 
-            if (await roleManager.RoleExistsAsync(UserRoles.Admin))
+            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
             {
-                await userManager.AddToRoleAsync(user, UserRoles.Admin);
+                await _userManager.AddToRoleAsync(user, UserRoles.Admin);
             }
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
@@ -135,9 +138,11 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         [Route("logout")]
         public async Task<IActionResult> Logout()
         {
-            await signInManager.SignOutAsync();
+            //var userName = User?.Identity?.Name;
+
+            await _signInManager.SignOutAsync();
             //await tokenManager.DeactivateCurrentAsync();
-            //JWT.RemoveRefreshTokenByUserName(userName); // can be more specific to ip, user agent, device name, etc.
+            //JwtSecurityToken.RemoveRefreshTokenByUserName(userName); // can be more specific to ip, user agent, device name, etc.
             //_logger.LogInformation($"User [{userName}] logged out the system.");
             return SignOut();
         }
@@ -148,9 +153,9 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         public IActionResult CurrentUser()
         {
             var user = new { 
-                UserName = User?.Identity?.Name,
-                UserEmail = User?.Identity,
-                UserDetails = userManager.GetUserAsync(User)
+                UserName = User.Identity?.Name,
+                UserEmail = User.Identity,
+                UserDetails = _userManager.GetUserAsync(User)
                 //UserDetails = User?.Claims?.ToList(),
             };
 
@@ -163,6 +168,14 @@ namespace SchoolAppASPv2.IdentityJWT.Controllers
         public ActionResult Authenticate()
         {
             return Ok();
+        }
+
+        [HttpPost("tokens/cancel")]
+        public async Task<IActionResult> CancelAccessToken()
+        {
+            await _tokenManager.DeactivateCurrentAsync();
+
+            return NoContent();
         }
 
     }
