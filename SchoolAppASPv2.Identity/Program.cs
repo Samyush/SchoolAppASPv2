@@ -4,12 +4,14 @@ using SchoolAppASPv2.Identity;
 using SchoolAppASPv2.Identity.Data;
 using SchoolAppASPv2.Identity.Models;
 using SchoolAppASPv2.Identity.Services;
-using System.Reflection;
-using static OpenIddict.Abstractions.OpenIddictConstants;
+// using SchoolAppASPv2.Infrastructure;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddControllers();
 
@@ -24,84 +26,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseSqlServer(
                   builder.Configuration.GetConnectionString("SchoolAppAspConnection"),
                   b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
-
-    options.UseOpenIddict();
-
+    
 });
 
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//{
 
-//    // Configure the context to use Microsoft SQL Server.
-//    options.UseSqlServer(builder.Configuration["ConnectionString"], sqlServerOptionsAction: sqlOptions =>
-//    {
-//        sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().Assembly.GetName().Name);
-//    });
-
-//    // Register the entity sets needed by OpenIddict.
-//    // Note: use the generic overload if you need
-//    // to replace the default OpenIddict entities.
-//    options.UseOpenIddict();
-//});
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                .AddRoles<IdentityRole>()
               .AddEntityFrameworkStores<ApplicationDbContext>()
               .AddDefaultTokenProviders();
-
-builder.Services.Configure<IdentityOptions>(options =>
-{
-    options.ClaimsIdentity.UserNameClaimType = Claims.Name;
-    options.ClaimsIdentity.UserIdClaimType = Claims.Subject;
-    options.ClaimsIdentity.RoleClaimType = Claims.Role;
-    options.SignIn.RequireConfirmedAccount = false;
-});
-
-builder.Services.AddOpenIddict()
-                .AddCore(options =>
-                {
-                    options.UseEntityFrameworkCore()
-                           .UseDbContext<ApplicationDbContext>();
-                }).AddServer(options =>
-                {
-                    options.SetAuthorizationEndpointUris("/connect/authorize")
-                           .SetLogoutEndpointUris("/connect/logout")
-                            .SetTokenEndpointUris("/connect/token")
-                           .SetIntrospectionEndpointUris("/connect/introspect")
-                           .SetUserinfoEndpointUris("/connect/userinfo");
-
-                    options.RegisterScopes(Scopes.Email, Scopes.Profile, Scopes.Roles);
-
-                    options.AllowImplicitFlow()
-                             .AllowAuthorizationCodeFlow()
-                             .AllowClientCredentialsFlow();
-
-                    // Register the signing and encryption credentials.
-                    //options.AddDevelopmentEncryptionCertificate()
-                    //       .AddDevelopmentSigningCertificate();
-
-                    options.AddEphemeralSigningKey()
-                         .AddEphemeralEncryptionKey();
-
-
-                    // Register the ASP.NET Core host and configure the ASP.NET Core-specific options.
-                    options.UseAspNetCore()
-                    .DisableTransportSecurityRequirement()
-                            .EnableTokenEndpointPassthrough()
-                            .EnableAuthorizationEndpointPassthrough()
-                           .EnableLogoutEndpointPassthrough()
-                           .EnableUserinfoEndpointPassthrough()
-                           .EnableStatusCodePagesIntegration();
-                }).AddValidation(options =>
-                {
-                    // Import the configuration from the local OpenIddict server instance.
-                    options.UseLocalServer();
-
-                    // Register the ASP.NET Core host.
-                    options.UseAspNetCore();
-
-
-                });
 
 
 
