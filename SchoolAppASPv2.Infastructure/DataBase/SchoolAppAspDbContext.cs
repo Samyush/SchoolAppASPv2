@@ -19,6 +19,7 @@ namespace SchoolAppASPv2.Infastructure.DataBase
         public DbSet<AspNetUsers> AspNetUsers { get; set; }
         public DbSet<Events> Events { get; set; }
         public DbSet<LineItem> LineItems { get; set; }
+        public DbSet<Image>  Images { get; set; }
 
         public SchoolAppAspDbContext(DbContextOptions<SchoolAppAspDbContext> options,
             IDateTimeService dateTime)

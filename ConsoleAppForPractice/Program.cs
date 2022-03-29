@@ -13,6 +13,12 @@ foreach (var title in titles)
 
 Console.WriteLine("Hello, World!");
 
+string s = "You win I lose but still I win and You never know";
+Console.WriteLine(s);
+string[] subs = s.Split();
+foreach (var sub in subs)
+    Console.WriteLine($"Substring: {sub}");
+
 //the code now runs with out program class and Main Method as follows
 Programs.Main();
 public class Vegetable
@@ -41,4 +47,5 @@ class Programs
 /*
  eta pugyo aile lai
 https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
-https://docs.microsoft.com/en-us/dotnet/csharp/how-to/*/
+https://docs.microsoft.com/en-us/dotnet/csharp/how-to/
+*/

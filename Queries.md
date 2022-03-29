@@ -55,3 +55,7 @@
 ##################################################################################################
 HttpContext => SignInAsync || SignOutAsync (url link : https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext?view=aspnetcore-6.0)
 
+##################################################################################################
+
+### To find the difference between Struct and Normal Classes _____
+
