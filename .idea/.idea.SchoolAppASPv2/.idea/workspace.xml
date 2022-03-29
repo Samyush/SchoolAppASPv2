@@ -11,10 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fcd7a10-22bc-4cca-85cb-008484737b42" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ConsoleAppForPractice/ConsoleAppForPractice.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ConsoleAppForPractice/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SchoolAppASPv2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SchoolAppASPv2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SchoolAppASPv2.sln" beforeDir="false" afterPath="$PROJECT_DIR$/SchoolAppASPv2.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +196,8 @@
       <workItem from="1647688500858" duration="1730000" />
       <workItem from="1647872494316" duration="1910000" />
       <workItem from="1647959003386" duration="1127000" />
-      <workItem from="1648039994478" duration="3625000" />
+      <workItem from="1648039994478" duration="3866000" />
+      <workItem from="1648127331715" duration="1393000" />
     </task>
     <task id="LOCAL-00001" summary="unknown changes">
       <created>1646729210095</created>
@@ -222,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647959075699</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="learning C# V11 and .NET 6">
+      <created>1648053232706</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1648053232706</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +253,7 @@
     <MESSAGE value="unknown changes" />
     <MESSAGE value="unversioned files" />
     <MESSAGE value="image adding" />
-    <option name="LAST_COMMIT_MESSAGE" value="image adding" />
+    <MESSAGE value="learning C# V11 and .NET 6" />
+    <option name="LAST_COMMIT_MESSAGE" value="learning C# V11 and .NET 6" />
   </component>
 </project>
