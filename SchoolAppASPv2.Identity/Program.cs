@@ -23,7 +23,7 @@ builder.Services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
-    options.UseSqlServer(
+    options.UseNpgsql(
                   builder.Configuration.GetConnectionString("SchoolAppAspConnection"),
                   b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
     

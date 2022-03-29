@@ -28,7 +28,7 @@ namespace SchoolAppASPv2.Infrastructure.DataBase
             : base(options)
         {
             _dateTime = dateTime;
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -49,3 +49,5 @@ namespace SchoolAppASPv2.Infrastructure.DataBase
 
     }
 }
+
+// https://aspnetboilerplate.com/Pages/Documents/EF-Core-PostgreSql-Integration
