@@ -30,7 +30,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 });
 
 
-
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                .AddRoles<IdentityRole>()
               .AddEntityFrameworkStores<ApplicationDbContext>()

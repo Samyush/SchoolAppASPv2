@@ -21,9 +21,11 @@ namespace SchoolAppASPv2.Infrastructure
             var connectionString = configuration.GetConnectionString("SchoolAppAspConnection");
 
            services.AddDbContext<SchoolAppAspDbContext>(options =>
-           options.UseSqlServer(
+           options.UseNpgsql(
                          configuration.GetConnectionString("SchoolAppAspConnection"),
                          b => b.MigrationsAssembly(typeof(SchoolAppAspDbContext).Assembly.FullName)));
+           
+           
 
             services.AddScoped(provider => (ISchoolAppAspDbContext)provider.GetService<SchoolAppAspDbContext>());
             services.AddHttpContextAccessor();
