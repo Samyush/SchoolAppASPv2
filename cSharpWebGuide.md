@@ -21,3 +21,11 @@ https://hub.docker.com/_/microsoft-mssql-server?tab=description => docker databa
 https://docs.microsoft.com/en-us/dotnet/api/system.identitymodel.tokens.jwt?view=azure-dotnet => JWT token guide
 
 https://docs.microsoft.com/en-us/dotnet/api/system.identitymodel.tokens.jwt.jwtsecuritytoken.-ctor?view=azure-dotnet => JWT token guide 2
+
+#########################################################################
+
+############### Image Addition Tutorial =>
+
+https://www.c-sharpcorner.com/UploadFile/2b481f/displaying-upload-image-in-image-controller-in-web-api/
+
+https://www.aspsnippets.com/Articles/Web-API-Save-Upload-image-to-Server-in-ASPNet-MVC.a~~~~spx
