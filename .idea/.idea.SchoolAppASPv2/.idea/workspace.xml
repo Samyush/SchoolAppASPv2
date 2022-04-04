@@ -10,8 +10,8 @@
     <projectFile profileName="IIS Express">SchoolAppASPv2.IdentityJWT/SchoolAppASPv2.IdentityJWT.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fcd7a10-22bc-4cca-85cb-008484737b42" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SchoolAppASPv2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SchoolAppASPv2/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="83d8023f-16b4-4797-b75a-970627713fa4" name="Changes" comment="learning to add image">
+      <change beforePath="$PROJECT_DIR$/cSharptxt.md" beforeDir="false" afterPath="$PROJECT_DIR$/cSharptxt.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

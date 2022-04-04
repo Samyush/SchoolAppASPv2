@@ -28,3 +28,9 @@ https://www.c-sharpcorner.com/UploadFile/2b481f/displaying-upload-image-in-image
 
 https://www.aspsnippets.com/Articles/Web-API-Save-Upload-image-to-Server-in-ASPNet-MVC.aspx
 
+#########################################################################
+
+############### Data Annotations - DatabaseGenerated Attribute in EF 6 & EF Core =>
+~~~~
+https://www.entityframeworktutorial.net/code-first/databasegenerated-dataannotations-attribute.aspx
+
