@@ -12,14 +12,14 @@ using SchoolAppASPv2.Identity.Data;
 namespace SchoolAppASPv2.Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211129073520_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220403073945_Random")]
+    partial class Random
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);

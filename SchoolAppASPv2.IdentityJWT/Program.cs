@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using SchoolAppASPv2.IdentityJWT.Data;
 using SchoolAppASPv2.IdentityJWT.Model;
 using SchoolAppASPv2.IdentityJWT.Services;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,22 +20,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // For Entity Framework  
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnStr")));
+//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnStr")));
 
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//{
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    // Configure the context to use Microsoft SQL Server.
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnStr"), sqlServerOptionsAction: sqlOptions =>
+    {
+        sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().Assembly.GetName().Name);
+    });
+});
 
-//    // Configure the context to use Microsoft SQL Server.
-//    options.UseSqlServer(builder.Configuration["ConnectionString"], sqlServerOptionsAction: sqlOptions =>
-//    {
-//        sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().Assembly.GetName().Name);
-//    });
-
-//    // Register the entity sets needed by OpenIddict.
-//    // Note: use the generic overload if you need
-//    // to replace the default OpenIddict entities.
-//    options.UseOpenIddict();
-//});
 
 // For Identity  
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
