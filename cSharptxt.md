@@ -34,3 +34,9 @@ https://www.aspsnippets.com/Articles/Web-API-Save-Upload-image-to-Server-in-ASPN
 ~~~~
 https://www.entityframeworktutorial.net/code-first/databasegenerated-dataannotations-attribute.aspx
 
+#########################################################################
+
+############### Git Guidence
+
+https://git-scm.com/docs/git-restore
+
