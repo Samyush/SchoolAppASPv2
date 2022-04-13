@@ -30,7 +30,7 @@ https://www.aspsnippets.com/Articles/Web-API-Save-Upload-image-to-Server-in-ASPN
 
 #########################################################################
 
-############### Git commands =>
-
-https://git-scm.com/docs/git-restore
+############### Data Annotations - DatabaseGenerated Attribute in EF 6 & EF Core =>
+~~~~
+https://www.entityframeworktutorial.net/code-first/databasegenerated-dataannotations-attribute.aspx
 

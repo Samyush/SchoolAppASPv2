@@ -10,8 +10,9 @@
     <projectFile profileName="IIS Express">SchoolAppASPv2.IdentityJWT/SchoolAppASPv2.IdentityJWT.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fcd7a10-22bc-4cca-85cb-008484737b42" name="Changes" comment="">
+    <list default="true" id="83d8023f-16b4-4797-b75a-970627713fa4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SchoolAppASPv2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SchoolAppASPv2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleAppForPractice/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleAppForPractice/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +39,7 @@
     <setting file="file://$PROJECT_DIR$/SchoolAppASPv2/Startup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SchoolAppASPv2/Controllers/v1/UserController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SchoolAppASPv2.Application/Common/Interface/ISchoolEventsService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/17a25bf4cd58852e31b6bc798fef1d6289441360eea1912bf89a9b4fd337a3/SingleQueryingEnumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SchoolAppASPv2/Controllers/SchoolEvents/SchoolsEventsController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a4ed796081acfa4cefed1c41947519a48feaf6375183bfb6abe1618b88241/SqlServerDbContextOptionsBuilderExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SchoolAppASPv2.Identity/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
@@ -173,11 +175,20 @@
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.SchoolAppASPv2" />
+      <item itemvalue=".NET Launch Settings Profile.SchoolAppASPv2.Identity" />
+      <item itemvalue=".NET Launch Settings Profile.SchoolAppASPv2.Identity: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.SchoolAppASPv2.IdentityJWT" />
+      <item itemvalue=".NET Launch Settings Profile.SchoolAppASPv2.IdentityJWT: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.SchoolAppASPv2: IIS Express" />
+      <item itemvalue=".NET Project.ConsoleAppForPractice" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0fcd7a10-22bc-4cca-85cb-008484737b42" name="Changes" comment="" />
+      <changelist id="83d8023f-16b4-4797-b75a-970627713fa4" name="Changes" comment="" />
       <created>1645796343062</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -198,6 +209,7 @@
       <workItem from="1647959003386" duration="1127000" />
       <workItem from="1648039994478" duration="3866000" />
       <workItem from="1648127331715" duration="1393000" />
+      <workItem from="1649165822579" duration="236000" />
     </task>
     <task id="LOCAL-00001" summary="unknown changes">
       <created>1646729210095</created>
@@ -227,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648053232706</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="learning to add image and learning more over data annotations">
+      <created>1649089252002</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1649089252002</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,6 +273,7 @@
     <MESSAGE value="unversioned files" />
     <MESSAGE value="image adding" />
     <MESSAGE value="learning C# V11 and .NET 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="learning C# V11 and .NET 6" />
+    <MESSAGE value="learning to add image and learning more over data annotations" />
+    <option name="LAST_COMMIT_MESSAGE" value="learning to add image and learning more over data annotations" />
   </component>
 </project>
