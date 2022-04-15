@@ -45,6 +45,12 @@ internal static class Programs
 }
 
 /*
+ 
+ differences in .net 6 and older versions
+ https://docs.microsoft.com/en-us/aspnet/core/migration/50-to-60-samples?view=aspnetcore-6.0
+ 
+ https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements
+ 
  eta pugyo aile lai
 https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
 https://docs.microsoft.com/en-us/dotnet/csharp/how-to/
