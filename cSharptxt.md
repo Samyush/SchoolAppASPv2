@@ -24,9 +24,11 @@ https://stackoverflow.com/questions/61368789/can-i-force-a-logout-or-expiration-
 
 ############### Image Addition Tutorial =>
 
-https://www.c-sharpcorner.com/UploadFile/2b481f/displaying-upload-image-in-image-controller-in-web-api/
+https://www.c-sharpcorner.com/UploadFile/2b481f/displaying-upload-image-in-image-controller-in-web-api/ => not working
 
-https://www.aspsnippets.com/Articles/Web-API-Save-Upload-image-to-Server-in-ASPNet-MVC.aspx
+https://www.aspsnippets.com/Articles/Web-API-Save-Upload-image-to-Server-in-ASPNet-MVC.aspx => not working
+
+https://www.ttmind.com/TechPost/Images-Upload-REST-API-using-ASP-NET-Core => this is the working one (good reference)
 
 #########################################################################
 
@@ -39,4 +41,7 @@ https://www.entityframeworktutorial.net/code-first/databasegenerated-dataannotat
 ############### Git Guidence
 
 https://git-scm.com/docs/git-restore
+
+
+
 

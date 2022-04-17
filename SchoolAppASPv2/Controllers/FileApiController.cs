@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,36 +14,46 @@ namespace SchoolAppASPv2.Controllers
     [ApiController]
     public class FileApiController : ControllerBase
     {
-        // GET: api/<FileApiController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        public static IWebHostEnvironment _environment;
+        public FileApiController(IWebHostEnvironment environment)
         {
-            return new string[] { "value1", "value2" };
+            _environment = environment;
         }
 
-        // GET api/<FileApiController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        public class FileUploadAPI
         {
-            return "value";
+            public IFormFile files { get; set; }
         }
 
-        // POST api/<FileApiController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<string> Post(FileUploadAPI files)
         {
+            if (files.files.Length > 0)
+            {
+                try
+                {
+                    if (!Directory.Exists(_environment.WebRootPath + "\\uploads\\"))
+                    {
+                        Directory.CreateDirectory(_environment.WebRootPath + "\\uploads\\");
+                    }
+                    using (FileStream filestream = System.IO.File.Create(_environment.WebRootPath + "\\uploads\\" + files.files.FileName))
+                    {
+                        files.files.CopyTo(filestream);
+                        filestream.Flush();
+                        return "\\uploads\\" + files.files.FileName;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return ex.ToString();
+                }
+            }
+            else
+            {
+                return "Unsuccessful";
+            }
+
         }
 
-        // PUT api/<FileApiController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<FileApiController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
