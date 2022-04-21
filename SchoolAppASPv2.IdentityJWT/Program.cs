@@ -14,8 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//builder.Services.AddTransient<TokenManagerMiddleware>();
-//builder.Services.AddTransient<ITokenManager, SchoolAppASPv2.IdentityJWT.Services.TokenManagerService>();
+builder.Services.AddTransient<TokenManagerMiddleware>();
+builder.Services.AddTransient<ITokenManager, SchoolAppASPv2.IdentityJWT.Services.TokenManagerService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -75,7 +75,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-//app.UseMiddleware<TokenManagerMiddleware>();
+app.UseMiddleware<TokenManagerMiddleware>();
 
 app.MapControllers();
 

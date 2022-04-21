@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -73,6 +74,11 @@ namespace SchoolAppASPv2
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SchoolAppASPv2 v1"));
             //}
+
+           /* app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("MVC didn't find anything!");
+            });*/
 
             app.UseHttpsRedirection();
 
