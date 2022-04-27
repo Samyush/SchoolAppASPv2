@@ -1,6 +1,7 @@
 ﻿namespace SchoolAppASPv2.IdentityJWT.Authorization
 {
-    public class AllowAnonymousAttributes
+    [AttributeUsage(AttributeTargets.Method)]
+    public class AllowAnonymousAttributes : Attribute
     {
     }
 }

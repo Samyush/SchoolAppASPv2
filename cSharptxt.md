@@ -50,3 +50,5 @@ https://git-scm.com/docs/git-restore
 https://jasonwatmore.com/post/2022/01/19/net-6-create-and-validate-jwt-tokens-use-custom-jwt-middleware
 
 https://jasonwatmore.com/post/2022/01/24/net-6-jwt-authentication-with-refresh-tokens-tutorial-with-example-api
+
+                //here I am right now in JwtUtils

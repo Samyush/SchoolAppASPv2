@@ -43,12 +43,40 @@ namespace SchoolAppASPv2.IdentityJWT.Authorization
 
         public RefreshToken GenerateRefreshToken(string ipAddress)
         {
+            var refreshToken = new RefreshToken();
             throw new NotImplementedException();
+                //here I am right now in JwtUtils
         }
 
         public int? ValidateJwtToken(string token)
         {
-            throw new NotImplementedException();
+            if (token == null)
+                return null;
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSetting.Secret);
+            try
+            {
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
+                    ClockSkew = TimeSpan.Zero,
+
+                }, out  SecurityToken validatedToken);
+
+                var jwtToken = (JwtSecurityToken)validatedToken;
+                var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+
+                // return user id from JWT token if validation successful
+                return userId;
+            }catch
+            {
+                //return null if validation fails
+                return null;
+            }
         }
     }
 }
