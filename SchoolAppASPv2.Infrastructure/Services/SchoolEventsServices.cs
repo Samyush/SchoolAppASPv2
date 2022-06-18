@@ -15,6 +15,7 @@ namespace SchoolAppASPv2.Infrastructure.Services
     {
         private readonly SchoolAppAspDbContext _databaseContext;
 
+        #region SchoolEventStart
         public SchoolEventsServices(SchoolAppAspDbContext db)
         {
             _databaseContext = db;
@@ -76,6 +77,8 @@ namespace SchoolAppASPv2.Infrastructure.Services
             await _databaseContext.SaveChangesAsync();
             return toDel;
         }
+        
+        #endregion
 
     }
 }
